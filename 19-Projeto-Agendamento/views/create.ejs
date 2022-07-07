@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  
+  <title>Cadastro</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Cadastro de consulta</h1>
+    <hr>
+    <form method="post" action="create">
+      <input type="text" name="name" id="name" placeholder="Nome do paciente" class="form-control">
+      <input type="email" name="email" id="email" placeholder="E-mail do paciente" class="form-control">
+      <input type="text" name="cpf" id="cpf" placeholder="CPF" class="form-control" oninput="mascara(this)" maxlength="14">
+      <input type="text" name="description" id="description" placeholder="Descrição" class="form-control">
+      <input type="date" name="date" id="date" placeholder="12/12/2022" class="form-control">
+      <input type="time" name="time" id="time" class="form-control">
+      <button class="btn btn-success">Agendar</button>
+    </form>
+  </div>
+  
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script>
+  function mascara(cpf){
+    let v = cpf.value;
+    
+    if (isNaN(v[v.length-1])) { 
+      // impede entrar outro caractere que não seja número
+      cpf.value = v.substring(0, v.length-1);
+      return;
+    }
+    
+    if (v.length == 3 || v.length == 7) cpf.value += ".";
+    if (v.length == 11) cpf.value += "-";
+  }
+</script>
+</html>

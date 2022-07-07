@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Loja de Games</title>
+</head>
+<body>
+   <hr>
+   <h2>Login</h2>
+   <input type="text" name="email" id="email" placeholder="Email"><br>
+   <input type="text" name="password" id="password" placeholder="******"><br>
+   <button onclick="login()">Entrar</button>
+
+   <hr>
+   <h4>Lista de Games</h4>
+   <ul id="games"></ul>
+   <hr>
+
+   <h4>Novo Game</h4>
+   <input type="text" name="title" id="title" placeholder="Título do Game"><br>
+   <input type="number" name="year" id="year" placeholder="Ano"><br>
+   <input type="number" name="price" id="price" placeholder="Preço"><br>
+   <button onclick="createGame()">Criar</button>
+   <hr>
+
+   <h4>Editar Game</h4>
+   <input type="text" name="idEdit" id="idEdit" placeholder="ID" readonly><br>
+   <input type="text" name="titleEdit" id="titleEdit" placeholder="Título do Game"><br>
+   <input type="number" name="yearEdit" id="yearEdit" placeholder="Ano"><br>
+   <input type="number" name="priceEdit" id="priceEdit" placeholder="Preço"><br>
+   <button onclick="updateGame()">Editar</button>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="script.js"></script>
+</html>

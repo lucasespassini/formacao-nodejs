@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      font-family: Helvetica;
+    }
+
+    h1 {
+      margin: 1rem 0;
+    }
+
+    #chat {
+      padding: 1rem;
+      width: 100%;
+      height: 100%;
+      border: 1px solid #666;
+      border-radius: .2rem;
+      overflow-y: auto;
+    }
+
+    input[type="text"] {
+      margin: 1rem 0;
+      padding: .5rem;
+      border: 1px solid #666;
+      border-radius: 1rem;
+    }
+
+    input[type="text"]::placeholder {
+      text-align: center;
+      color: #666;
+    }
+
+    button {
+      padding: .5rem 1rem;
+      border: none;
+      border-radius: 1rem;
+      background-color: #666666ea;
+      color: #fff;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    button:hover {
+      background-color: #666666;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Chat do Guia</h1>
+  <div id="chat"></div>
+  <div>
+    <input type="text" id="msg" autocomplete="off" placeholder="Digite sua mensagem">
+    <input type="text" id="username" placeholder="Seu nome de usuário">
+    <button onclick="enviar()">Enviar</button>
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"></script>
+<script>
+  const socket = io('http://localhost:3000')
+
+  socket.on('disconnect', () => {
+    // console.log('Desconectado')
+  })
+
+  function enviar() {
+    const msg = document.querySelector('#msg').value
+    const userName = document.querySelector('#username').value
+
+    socket.emit('msg', {msg, userName})
+  }
+
+  socket.on('showmsg', data => {
+    console.log(data)
+    const chat = document.querySelector('#chat')
+    const p = document.createElement('p')
+    p.innerHTML = data.userName + ': ' + data.msg
+    chat.append(p)
+  })
+</script>
+</html>
